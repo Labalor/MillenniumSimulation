@@ -24,7 +24,7 @@ SmallHalos_H1=pd.read_csv('H1_Small.csv',names=Head)
 BigHalos_H1.head()
 SmallHalos_H1.head()
 limits=[0,1,10,100,1000]
-listhalos=['H1_1','H1_10','H1_100','H1_1000','H1_10000']
+listhalos=['H1_0','H1_1','H1_10','H1_100','H1_1000']
 
 print('\n------\nH1_Big.csv')
 H1=Halo(limits,listhalos,BigHalos_H1)
