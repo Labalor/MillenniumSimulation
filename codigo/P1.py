@@ -72,7 +72,7 @@ for i in listhalos:
 		if len(np.array(H1_Halos[j][i]['haloID']))<1:
 			print('None')
 		else:
-			print(np.array(H1_Halos[j][i]['haloID'])[0:9] )
+			print(np.array(H1_Halos[j][i]['haloID'])[0:10] )
 
 try:
 	shutil.rmtree('H2/Plots')
