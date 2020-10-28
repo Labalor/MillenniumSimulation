@@ -27,11 +27,9 @@ limits=[0,1,10,100,1000]
 listhalos=['H1_1','H1_10','H1_100','H1_1000','H1_10000']
 
 print('\n------\nH1_Big.csv')
-Halos1=counts(BigHalos_H1['m_Crit200'])
 H1=Halo(limits,listhalos,BigHalos_H1)
 
 print('\n------\nH1_Small.csv')
-Halos2=counts(SmallHalos_H1['m_Crit200'])
 H1_2=Halo(limits,listhalos,SmallHalos_H1)
 input('\nCODE Information: There are two dictionaries with Halos data in critical mass 200. The following structure is used to operate with the dictionaries: '+
 	'\n  	np.array( Dictionary[Interval Key][Head key])[rows]\n\n '+
