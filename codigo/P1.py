@@ -27,26 +27,19 @@ def Halo(limits,listhalos,Halos):
 
 def PlotHaloTree(HaloTree,limits):
 	for i in limits:
-		try:
-			os.mkdir('H2/Plots/'+str(i))
-		except:
-			print('Make sure you have the necessary folders.')
+		plot=plt.figure(figsize=(13.0, 10.0))
+		ax=plot.add_subplot(111)
+
 		for j in HaloTree.keys():
 			if  str(i)==str(j)[0:-2]:
-
-				plot=plt.figure(figsize=(13.0, 10.0))
-				ax=plot.add_subplot(111)	
-
 				m_Crit200=np.array(HaloTree[j]['m_Crit200'])
 				logM=np.log10(m_Crit200/m_Crit200[0])
 				logz=np.log10(1+np.array(HaloTree[j]['redshift']))
-
 				plt.plot(logz,logM)		
-				ax.plot()
-				ax.set_ylabel('log($M_{halo}/M_{halo,z=0}$')
-				ax.set_xlabel('log(1+z)')
-				plt.savefig('H2/Plots/'+str(i)+'/'+str(j))
-				plt.close()
+		ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$')
+		ax.set_xlabel('log(1+z)')
+		plt.savefig('H2/Plots/'+str(i))
+		plt.close()
 
 Head=['haloID','subHaloID','lastProgenitorId','treeId','snapNum','redshift','firstProgenitorId','nextProgenitorId','descendantId',
 'firstHaloInFOFgroupId','nextHaloInFOFgroupId','np','m_Mean200','m_Crit200','m_TopHat','phKey','x','y','z','zIndex','ix',
