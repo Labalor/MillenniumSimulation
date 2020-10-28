@@ -8,10 +8,10 @@ import pandas as pd
 def Halo(limits,listhalos,Halos):
 	buf={}
 	for i in range(len(limits)-1):
-		buf[listhalos[i]]=Halos[(Halos['m_Mean200']>limits[i]) & (Halos['m_Mean200']<limits[i+1])]
-	buf[listhalos[i+1]]=Halos[(Halos['m_Mean200']>limits[i+1])]
-	print('\nNumber of Halos by mass:\n [0,1]-> '+ str(len(np.array(buf[listhalos[0]]['m_Mean200'])))+'\n [1,10]-> '+ str(len(np.array(buf[listhalos[1]]['m_Mean200'])))+'\n [10,100]-> '+ str(len(np.array(buf[listhalos[2]]['m_Mean200']))) +
-	 '\n [100,1000]-> '+ str(len(np.array(buf[listhalos[3]]['m_Mean200'])))+'\n [1000,-]-> '+ str(len(np.array(buf[listhalos[4]]['m_Mean200'])) ))
+		buf[listhalos[i]]=Halos[(Halos['m_Crit200']>limits[i]) & (Halos['m_Crit200']<limits[i+1])]
+	buf[listhalos[i+1]]=Halos[(Halos['m_Crit200']>limits[i+1])]
+	print('\nNumber of Halos by mass:\n [0,1]-> '+ str(len(np.array(buf[listhalos[0]]['m_Crit200'])))+'\n [1,10]-> '+ str(len(np.array(buf[listhalos[1]]['m_Crit200'])))+'\n [10,100]-> '+ str(len(np.array(buf[listhalos[2]]['m_Crit200']))) +
+	 '\n [100,1000]-> '+ str(len(np.array(buf[listhalos[3]]['m_Crit200'])))+'\n [1000,-]-> '+ str(len(np.array(buf[listhalos[4]]['m_Crit200'])) ))
 	return(buf)
 
 
@@ -33,9 +33,9 @@ print('\n------\nH1_Small.csv')
 H1_2=Halo(limits,listhalos,SmallHalos_H1)
 input('\nCODE Information: There are two dictionaries with Halos data in critical mass 200. The following structure is used to operate with the dictionaries: '+
 	'\n  	np.array( Dictionary[Interval Key][Head key])[rows]\n\n '+
-	'.-Interval Key: '+str(listhalos)+'\n 	Note: H1-> Mainly Halo. _int->upper m_Mean200 limit.  \n\n .-Head key: '+str(Head)+'\nPress any key to continue.')
+	'.-Interval Key: '+str(listhalos)+'\n 	Note: H1-> Mainly Halo. _int->upper m_Crit200 limit.  \n\n .-Head key: '+str(Head)+'\nPress any key to continue.')
 
-print(np.array(H1_2['H1_100']['m_Mean200'])[0:10] )
+print(np.array(H1_2['H1_100']['m_Crit200'])[0:10] )
 
 
 
