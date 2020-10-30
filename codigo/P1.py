@@ -12,7 +12,7 @@ def Load(folder,Head):
 		buf.append(out)
 		Buf[str(out)[0:-4]]=pd.read_csv(folder+'/'+str(out),names=Head)
 		Buf[str(out)[0:-4]].head()
-	print('\n---------------------------------\nDIR->'+folder+'\nCSV files:' +str(buf))
+	print('\n---------------------------------\n//DIR->'+folder+'\nCSV files:' +str(buf))
 	print('Dictionary items:' + str(Buf.keys()))
 	return(Buf)
 
@@ -44,6 +44,7 @@ def PlotHaloTree(HaloTree,limits):
 					if int(k)==-1:
 						break
 				plt.plot(logz[0:conbuf],logM[0:conbuf])		
+		ax.text(0,-2, '$M_{halo,z=0}=5 x 10^{11}h^{-1}M_\odot$',fontsize=20)
 		ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$',fontsize=25)
 		ax.set_xlabel('log(1+z)',fontsize=25)
 		plot.suptitle('Halo Tree. Lower limit of m_Crit200 in simulation units: '+str(i), fontsize=25)
