@@ -26,18 +26,28 @@ def Halo(limits,listhalos,Halos):
 	return(buf)
 
 def PlotHaloTree(HaloTree,limits):
+
 	for i in limits:
+
 		plot=plt.figure(figsize=(13.0, 10.0))
 		ax=plot.add_subplot(111)
 
 		for j in HaloTree.keys():
+			HaloTree[j]=HaloTree[j][HaloTree[j]['m_Crit200']>0 ] 
 			if  str(i)==str(j)[0:-2]:
-				m_Crit200=np.array(HaloTree[j]['m_Crit200'])
-				logM=np.log10(m_Crit200/m_Crit200[0])
+				m_Crit200Array=np.array(HaloTree[j]['m_Crit200'])
+				logM=np.log10(m_Crit200Array/m_Crit200Array[0])
 				logz=np.log10(1+np.array(HaloTree[j]['redshift']))
-				plt.plot(logz,logM)		
-		ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$')
-		ax.set_xlabel('log(1+z)')
+				conbuf=0
+				for k in HaloTree[j]['firstProgenitorId']:
+					conbuf+=1
+					if int(k)==-1:
+						break
+				plt.plot(logz[0:conbuf],logM[0:conbuf])		
+		ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$',fontsize=25)
+		ax.set_xlabel('log(1+z)',fontsize=25)
+		plot.suptitle('Halo Tree. Lower limit of m_Crit200 in simulation units: '+str(i), fontsize=25)
+		plt.grid()
 		plt.savefig('H2/Plots/'+str(i))
 		plt.close()
 
