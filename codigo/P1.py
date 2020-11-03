@@ -4,7 +4,7 @@ import os
 import shutil
 import pandas as pd
 import matplotlib.pyplot as plt 
-
+##################################################################################################################################
 def Load(folder,Head):
 	buf=[]
 	Buf={}
@@ -52,6 +52,38 @@ def PlotHaloTree(HaloTree,limits):
 		plt.savefig('H2/Plots/'+str(i))
 		plt.close()
 
+def Average(HaloTree,limits):
+	BufAverages={}
+	Bufstdev={}
+	for i in limits:
+		bufmatter={}
+		firstLoop=False
+		for j in HaloTree.keys():
+			HaloTree[j]=HaloTree[j][HaloTree[j]['m_Crit200']>0 ] 
+			if  str(i)==str(j)[0:-2]:
+				for k,p in zip(np.array(HaloTree[j]['redshift']),range(len(np.array(HaloTree[j]['redshift'])))) :
+					if int(np.array(HaloTree[j]['firstProgenitorId'])[p])==-1:
+						break
+					else:
+						if firstLoop==False:
+							bufmatter[k]=np.array(HaloTree[j]['m_Crit200'])[p]
+						else:
+							try:
+								bufmatter[k]=np.append(np.array(bufmatter[k]),np.array(HaloTree[j]['m_Crit200'])[p])
+							except KeyError:
+								bufmatter[k]=np.array(HaloTree[j]['m_Crit200'])[p]
+				firstLoop=True
+
+		bufstdev=[]
+		bufmean=[]
+		for redshift in bufmatter.keys():
+			bufmean.append(np.mean(bufmatter[redshift]))
+			bufstdev.append(np.std(bufmatter[redshift]))
+		BufAverages[i]=np.array(bufmean)
+		Bufstdev[i]=np.array(bufstdev)
+	return(BufAverages,Bufstdev)
+
+
 Head=['haloID','subHaloID','lastProgenitorId','treeId','snapNum','redshift','firstProgenitorId','nextProgenitorId','descendantId',
 'firstHaloInFOFgroupId','nextHaloInFOFgroupId','np','m_Mean200','m_Crit200','m_TopHat','phKey','x','y','z','zIndex','ix',
 'iy','iz','velX','velY','velZ','velDisp','vMax','spinX','spinY','spinZ','mostBoundID','fileNr','subhaloIndex','halfmassRadius','random']
@@ -91,3 +123,6 @@ input('\nCODE Information: There are dictionaries with Halos Trees data. The fol
 	'Note about the CSV key: inter_number ->Inter: lower m_Crit200 limit /->_number: only a reference number.\n\n.-Head key: '+str(Head)+'\nPress any key to continue.')
 
 PlotHaloTree(HaloTree,limits)
+Average,Stdev=Average(HaloTree,limits)
+print(Average)
+print(Stdev)
