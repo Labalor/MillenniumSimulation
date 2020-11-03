@@ -53,11 +53,11 @@ def PlotHaloTree(HaloTree,limits):
 		plt.close()
 
 def Average(HaloTree,limits):
-	BufAverages={}
-	Bufstdev={}
-	for i in limits:
-		bufmatter={}
-		firstLoop=False
+	BufAverages={} #Almacena los promedios para los 5 intervalos
+	Bufstdev={} #"" para desv típica
+	for i in limits: #recorre los intervalos
+		bufmatter={} #Almacena los datos de masa de todos los 10 halos, por intervalo, en cada z.
+		firstLoop=False #Esta variable sirve para la primera tanda de valores. Cómo el diccionario está vacio necesita un comienzo partícular. Luego se hace append
 		for j in HaloTree.keys():
 			HaloTree[j]=HaloTree[j][HaloTree[j]['m_Crit200']>0 ] 
 			if  str(i)==str(j)[0:-2]:
@@ -70,7 +70,7 @@ def Average(HaloTree,limits):
 						else:
 							try:
 								bufmatter[k]=np.append(np.array(bufmatter[k]),np.array(HaloTree[j]['m_Crit200'])[p])
-							except KeyError:
+							except KeyError: #Como puede existir una z nueva en mitad del proceso, rompiendo el bucle porque le haría falta ese inicio especial, este except soluciona esto.
 								bufmatter[k]=np.array(HaloTree[j]['m_Crit200'])[p]
 				firstLoop=True
 
