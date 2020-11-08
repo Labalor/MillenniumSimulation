@@ -28,7 +28,6 @@ def Halo(limits,listhalos,Halos):
 def PlotHaloTree(HaloTree,limits):
 
 	for i in limits:
-
 		plot=plt.figure(figsize=(13.0, 10.0))
 		ax=plot.add_subplot(111)
 
@@ -40,9 +39,10 @@ def PlotHaloTree(HaloTree,limits):
 				logz=np.log10(1+np.array(HaloTree[j]['redshift']))
 				conbuf=0
 				for k in HaloTree[j]['firstProgenitorId']:
-					conbuf+=1
 					if int(k)==-1:
 						break
+					conbuf+=1
+
 				plt.plot(logz[0:conbuf],logM[0:conbuf])		
 		ax.text(0,-2, '$M_{halo,z=0}=5 x 10^{11}h^{-1}M_\odot$',fontsize=20)
 		ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$',fontsize=25)
