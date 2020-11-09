@@ -1,0 +1,53 @@
+\section{Introducción} 
+\label{sec:1} % no poner acentos
+
+El análisis de la evolución de los halos de materia oscura se ha realizado a partir de la base de datos en la aplicación web de \textbf{Virgo - Millennium}\cite{6}, anunciada en (\textit{G. Lemson $\&$ the Virgo Consortium, 2006}\cite{5}), usando \textit{Structured Query Language} (SQL). De esta manera, se accede a todas las propiedades de las galaxias y halos así como a la relación espacial y temporal entre ellos y su entorno. El estudio esta basado en el modelo de \textit{Springel et al., 2005}\cite{1}, el cual hace predicciones sobre el crecimiento jerárquico de las estructuras a través de la inestabilidad gravitatoria. \\ 
+
+ Los \textbf{parámetros y condiciones iniciales} de la simulación $\Lambda$CDM, se establecen en la \textit{Tabla} ~\ref{tab:tabla1}: 
+ 
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\cellcolor[gray]{0.9}\large{$\Omega_m$} & \cellcolor[gray]{0.9}\large{$\Omega_b$} & \cellcolor[gray]{0.9}\large{$\Omega_\Lambda$} & \cellcolor[gray]{0.9}\large{$h$} & \cellcolor[gray]{0.9}\large{$n$}& \cellcolor[gray]{0.9}\large{$\sigma_8$}\\
+\midrule
+0.25 & 0.0045 & 0.75 & 0.73 & 1 & 0.9 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\caption{\textbf{Parámetros y condiciones iniciales}: $\Omega_m = \Omega_{dm} + \Omega_b$ es la densidad total de materia, $\Omega_b$ es la densidad de bariones y $\Omega_\Lambda$ es la densidad de materia oscura, las tres en unidades de la densidad crítica para un universo cerrado, $h$ es la constante de Hubble, $n$ es el índice del espectro de perturbaciones iniciales, y $\sigma_8$ es la amplitud de las perturbaciones (\textit{Springel et al., 2005}\cite{1})}
+\label{tab:tabla1}
+\end{table}
+
+El volumen de la simulación es una caja periódica de 500 $h^{-1}Mpc$ de lado, con N = $1^{3}$ partículas de masa $8.6\times 10^8$ $h^{-1}M_\odot$ (\textit{Springel et al., 2005}\cite{1}). \\
+
+Después de que se haya realizado la simulación, se construyen los árboles de fusión mediante la determinación del descendiente de cada subhalo a partir de los grupos de partículas \textit{friends to friends} (FoF). \\ 
+
+En la \textit{Sección} ~\ref{sec:2} se estudian los árboles de fusión en halos de rangos de masas diferentes. Se utilizan los datos de la $m_{crit200}$ (la masa dentro del radio donde FoF tiene una sobredensidad 200 veces mayor que la densidad crítica de la simulación) y el \textit{redshift} ($z=0$ implica un \textit{StepNum = 63}). Se obtienen los árboles de fusión de 10 subhalos dentro de los 5 rangos de masa analizados. \\ 
+
+En la \textit{Sección} ~\ref{sec:3} se realiza un análisis general del subhalo escogido, representando la masa y el exceso de color B-V de las galaxias que contiene. \\ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
