@@ -13,3 +13,7 @@ We present a simulation of the growth of dark matter structure using the Millenn
 
 - La masa está en unidades de 10^{10} masas solares. 
 
+**Sugerencias:**
+
+- Poner el eje y con esta notacion: $\dfrac{M(z)}{M_0}$, donde M(z) es la masa crítica a un redshift determinado, y M_0 es la masa crítica a redshift nulo. 
+
