@@ -18,4 +18,7 @@ We present a simulation of the growth of dark matter structure using the Millenn
 **Sugerencias:**
 
 - Poner el eje y con esta notacion: $\dfrac{M(z)}{M_0}$, donde M(z) es la masa crítica a un redshift determinado, y M_0 es la masa crítica a redshift nulo. 
+**Sobre el título y leyenda de gráficos**
+- No poner título ni leyenda a las gráficas cuando las generamos con Python. Si nos fijamos en los artículos científicos, con el caption de la figura es suficiente. 
+- Sin embargo, ¡¡¡podemos generar estas gráficas con título y leyenda para la presentación!!!
 
