@@ -1,6 +1,8 @@
 from Packages import *
 
 ##################################################################################################################################
+
+
 def Load(folder,Head):
 	buf=[]
 	Buf={}
@@ -22,7 +24,7 @@ def Halo(limits,listhalos,Halos):
 	return(buf)
 
 def PlotHaloTree(HaloTree,limits):
-
+	Value_suptitle=10
 	for i in limits:
 		plot=plt.figure(figsize=(13.0, 10.0))
 		ax=plot.add_subplot(111)
@@ -42,7 +44,13 @@ def PlotHaloTree(HaloTree,limits):
 				plt.plot(logz[0:conbuf],logM[0:conbuf])		
 		ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$',fontsize=25)
 		ax.set_xlabel('log(1+z)',fontsize=25)
-		plot.suptitle('Halo Tree. Lower limit of m_Crit200 in simulation units: '+str(i), fontsize=25)
+		if int(i)==0:
+			plot.suptitle('Dark Matter Halo Tree. m_Crit200 [M$_\odot$/h]: 0-1*10$^{10}$', fontsize=25)
+		if int(i)==1000:
+			plot.suptitle('Dark Matter Halo Tree. m_Crit200 [M$_\odot$/h]: 1*10$^{13}$-$\infty$', fontsize=25)
+		if int(i)!=0 and int(i)!=1000:
+			plot.suptitle('Dark Matter Halo Tree. m_Crit200 [M$_\odot$/h]: 1*10$^{'+str(Value_suptitle) +'}$-1*10$^{'+str(Value_suptitle+1)+'}$', fontsize=25)
+		Value_suptitle+=1
 		plt.grid()
 		plt.savefig('H2/Plots/'+str(i))
 		plt.close()
