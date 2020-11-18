@@ -1,9 +1,4 @@
-import numpy as np 
-from os import listdir
-import os
-import shutil
-import pandas as pd
-import matplotlib.pyplot as plt 
+from Packages import *
 from functions import *
 
 Head=['haloID','subHaloID','lastProgenitorId','treeId','snapNum','redshift','firstProgenitorId','nextProgenitorId','descendantId',
@@ -31,7 +26,7 @@ for i in listhalos:
 		if len(np.array(H1_Halos[j][i]['haloID']))<1:
 			print('None')
 		else:
-			print(np.array(H1_Halos[j][i]['haloID'])[0:10] )
+			print(np.array(H1_Halos[j][i]['haloID'])[0:25] )
 
 try:
 	shutil.rmtree('H2/Plots')
@@ -49,22 +44,26 @@ input('\nCODE Information: There are dictionaries with Halos Trees data. The fol
 PlotHaloTree(HaloTree,limits)
 Average,Stdev,Redshift=Average(HaloTree,limits)
 
-plot=plt.figure(figsize=(13.0, 10.0))
-ax=plot.add_subplot(111)
-for i in Redshift.keys():
-	logM=np.log10(Average[i]/Average[i][0])
-	logz=np.log10(1+Redshift[i])
-	if int(i)==0:
-		plt.scatter(logz,logM, label='Masas de halos entre '+ str(i)+'-'+str(1)+' unidades de la simulación' )
-	if int(i)==1000:
-		plt.scatter(logz,logM, label='Masas de halos a partir de '+ str(i)+' unidades de la simulación' )		
-	else:
-		plt.scatter(logz,logM, label='Masas de halos entre '+ str(i)+'-'+str(int(i)*10)+' unidades de la simulación' )		
-ax.text(0,-0.8, '$M_{halo,z=0}=5 x 10^{11}h^{-1}M_\odot$',fontsize=20)
-ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$',fontsize=25)
-ax.set_xlabel('log(1+z)',fontsize=25)
-plot.suptitle('Halo Tree. Lower limit of m_Crit200 in simulation units: '+str(i), fontsize=25)
-plt.legend()
-plt.grid()
-plt.savefig('H2/Plots/Averages.png')
-plt.close()
+
+
+PlotAverages(Average,Redshift,Stdev,Subplot=True)
+PlotAverages(Average,Redshift,Stdev,Subplot=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

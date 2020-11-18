@@ -1,9 +1,5 @@
-import numpy as np 
-from os import listdir
-import os
-import shutil
-import pandas as pd
-import matplotlib.pyplot as plt 
+from Packages import *
+
 ##################################################################################################################################
 def Load(folder,Head):
 	buf=[]
@@ -43,12 +39,9 @@ def PlotHaloTree(HaloTree,limits):
 						break
 					conbuf+=1
 
-				print("Halo's masses: ", m_Crit200Array[0:conbuf])
-				plt.plot(logz[0:conbuf],logM[0:conbuf], label='Halo con masa a z=0 de: '+str(round(np.array(HaloTree[j]['m_Crit200'])[0],2) ))		
-		ax.text(0,min(logM[0:conbuf]), '$M_{halo,z=0}=5 x 10^{11}h^{-1}M_\odot$',fontsize=20)
+				plt.plot(logz[0:conbuf],logM[0:conbuf])		
 		ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$',fontsize=25)
 		ax.set_xlabel('log(1+z)',fontsize=25)
-		plt.legend(fontsize=11)
 		plot.suptitle('Halo Tree. Lower limit of m_Crit200 in simulation units: '+str(i), fontsize=25)
 		plt.grid()
 		plt.savefig('H2/Plots/'+str(i))
@@ -70,13 +63,13 @@ def Average(HaloTree,limits):
 						break
 					else:
 						if firstLoop==False:
-							bufmatter[k]=np.array(HaloTree[j]['m_Crit200'])[p]
+							bufmatter[k]=np.array(HaloTree[j]['m_Crit200'])[p]/np.array(HaloTree[j]['m_Crit200'])[0]
 							bufredshift.append([k])
 						else:
 							try:
-								bufmatter[k]=np.append(np.array(bufmatter[k]),np.array(HaloTree[j]['m_Crit200'])[p])
+								bufmatter[k]=np.append(np.array(bufmatter[k]),np.array(HaloTree[j]['m_Crit200'])[p]/np.array(HaloTree[j]['m_Crit200'])[0])
 							except KeyError:
-								bufmatter[k]=np.array(HaloTree[j]['m_Crit200'])[p]
+								bufmatter[k]=np.array(HaloTree[j]['m_Crit200'])[p]/np.array(HaloTree[j]['m_Crit200'])[0]
 								bufredshift.append([k])
 
 				firstLoop=True
@@ -84,9 +77,62 @@ def Average(HaloTree,limits):
 		bufstdev=[]
 		bufmean=[]
 		for redshift in bufmatter.keys():
-			bufmean.append(np.mean(bufmatter[redshift]))
-			bufstdev.append(np.std(bufmatter[redshift]))
+			bufmean.append(np.mean(np.log10(bufmatter[redshift])))
+			bufstdev.append(np.std(np.log10(bufmatter[redshift])))
 		BufAverages[i]=np.array(bufmean)
 		Bufstdev[i]=np.array(bufstdev)
 	return(BufAverages,Bufstdev,BufRedshift)
 
+def PlotAverages(Average,Redshift,Stdev,Subplot):
+	plot=plt.figure(figsize=(13.0, 10.0))
+	col=0
+	colores=['blue','orange','green','red','purple','brown']
+
+	if Subplot==False:
+		ax=plot.add_subplot(1,1,1)
+		fontsize=20
+	if Subplot==True:
+		subplot=231
+	for i in Redshift.keys():
+		if Subplot==True:
+			ax=plot.add_subplot(subplot)
+			subplot+=1
+			fontsize=15
+			ax.set_xlabel('log(1+z)',fontsize=fontsize)
+			plt.grid()
+
+		logM=Average[i]
+		logz=np.log10(1+Redshift[i])
+		logStev=Stdev[i]
+		if int(i)==0:
+			if Subplot==True:
+				plt.errorbar(logz,logM,logStev,linestyle='None', capsize=5,ecolor=colores[col])
+				ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$',fontsize=fontsize)
+
+			plt.scatter(logz,logM,c=colores[col],
+				label='Masas de halos entre '+ str(i)+'-'+str(1)+' unidades de la simulación' )
+		if int(i)==1000:
+			if Subplot==True:
+				plt.errorbar(logz,logM,logStev,linestyle='None', capsize=5,ecolor=colores[col] )
+			plt.scatter(logz,logM,c=colores[col],
+				label='Masas de halos a partir de '+ str(i)+' unidades de la simulación' )			
+		if int(i)!=1000 and int(i)!=0:
+			if Subplot==True:
+				plt.errorbar(logz,logM,logStev,linestyle='None', capsize=5,ecolor=colores[col] )	
+				if col==3:
+					ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$',fontsize=fontsize)
+
+			plt.scatter(logz,logM,color=colores[col],
+				label='Masas de halos entre '+ str(i)+'-'+str(int(i)*10)+' unidades de la simulación' )	
+		col+=1	
+	
+	plot.suptitle('Averages with standar desviation  ', fontsize=fontsize)
+	if Subplot==False:
+		plt.grid()
+		ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$',fontsize=fontsize)
+		ax.set_xlabel('log(1+z)',fontsize=fontsize)
+		plt.legend()
+		plt.savefig('H2/Plots/Averages.png')
+	if Subplot==True:
+		plt.savefig('H2/Plots/AveragesSubplot.png')
+	plt.close()
