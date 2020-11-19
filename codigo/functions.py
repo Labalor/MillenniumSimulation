@@ -131,7 +131,7 @@ def PlotAverages(Average,Redshift,Stdev,Subplot):
 					ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$',fontsize=fontsize)
 
 			plt.scatter(logz,logM,color=colores[col],
-				label='Masas de halos entre  10$^{'+str(9+col)+'}$-10$^{'+str(col+10)+'}$' )	
+				label='Masas de halos entre  10$^{'+str(9+col)+'}$-10$^{'+str(col+10)+'}$ M$_\odot$/h' )	
 		col+=1	
 	if Subplot==True:
 		plot.suptitle('Dark Matter Halos. Averages of mass evolution & standar desviation.  ', fontsize=fontsize)
@@ -145,4 +145,5 @@ def PlotAverages(Average,Redshift,Stdev,Subplot):
 		plt.savefig('H2/Plots/Averages.png')
 	if Subplot==True:
 		plt.savefig('H2/Plots/AveragesSubplot.png')
+		plt.show()
 	plt.close()
