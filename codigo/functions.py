@@ -24,7 +24,7 @@ def Halo(limits,listhalos,Halos):
 	return(buf)
 
 def PlotHaloTree(HaloTree,limits):
-	Value_suptitle=10
+	Value_suptitle=9
 	for i in limits:
 		plot=plt.figure(figsize=(13.0, 10.0))
 		ax=plot.add_subplot(111)
@@ -45,11 +45,11 @@ def PlotHaloTree(HaloTree,limits):
 		ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$',fontsize=25)
 		ax.set_xlabel('log(1+z)',fontsize=25)
 		if int(i)==0:
-			plot.suptitle('Dark Matter Halo Tree. m_Crit200 [M$_\odot$/h]: 0-1*10$^{10}$', fontsize=25)
+			plot.suptitle('Dark Matter Halo Tree. m_Crit200 [M$_\odot$/h]: 0-10$^{10}$', fontsize=25)
 		if int(i)==1000:
-			plot.suptitle('Dark Matter Halo Tree. m_Crit200 [M$_\odot$/h]: 1*10$^{13}$-$\infty$', fontsize=25)
+			plot.suptitle('Dark Matter Halo Tree. m_Crit200 [M$_\odot$/h]: 10$^{13}$-$\infty$', fontsize=25)
 		if int(i)!=0 and int(i)!=1000:
-			plot.suptitle('Dark Matter Halo Tree. m_Crit200 [M$_\odot$/h]: 1*10$^{'+str(Value_suptitle) +'}$-1*10$^{'+str(Value_suptitle+1)+'}$', fontsize=25)
+			plot.suptitle('Dark Matter Halo Tree. m_Crit200 [M$_\odot$/h]: 10$^{'+str(Value_suptitle) +'}$-10$^{'+str(Value_suptitle+1)+'}$', fontsize=25)
 		Value_suptitle+=1
 		plt.grid()
 		plt.savefig('H2/Plots/'+str(i))
@@ -118,12 +118,12 @@ def PlotAverages(Average,Redshift,Stdev,Subplot):
 				ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$',fontsize=fontsize)
 
 			plt.scatter(logz,logM,c=colores[col],
-				label='Masas de halos entre '+ str(i)+'-'+str(1)+' unidades de la simulación' )
+				label='Masas de halos entre 0-10$^{10} M_\odot/h$ ' )
 		if int(i)==1000:
 			if Subplot==True:
 				plt.errorbar(logz,logM,logStev,linestyle='None', capsize=5,ecolor=colores[col] )
 			plt.scatter(logz,logM,c=colores[col],
-				label='Masas de halos a partir de '+ str(i)+' unidades de la simulación' )			
+				label='Masas de halos a partir de 10$^{13} M_\odot/h$' )			
 		if int(i)!=1000 and int(i)!=0:
 			if Subplot==True:
 				plt.errorbar(logz,logM,logStev,linestyle='None', capsize=5,ecolor=colores[col] )	
@@ -131,10 +131,12 @@ def PlotAverages(Average,Redshift,Stdev,Subplot):
 					ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$',fontsize=fontsize)
 
 			plt.scatter(logz,logM,color=colores[col],
-				label='Masas de halos entre '+ str(i)+'-'+str(int(i)*10)+' unidades de la simulación' )	
+				label='Masas de halos entre  10$^{'+str(9+col)+'}$-10$^{'+str(col+10)+'}$' )	
 		col+=1	
-	
-	plot.suptitle('Averages with standar desviation  ', fontsize=fontsize)
+	if Subplot==True:
+		plot.suptitle('Dark Matter Halos. Averages of mass evolution & standar desviation.  ', fontsize=fontsize)
+	if Subplot==False:
+		plot.suptitle('Dark Matter Halos. Averages of mass evolution',fontsize=fontsize)
 	if Subplot==False:
 		plt.grid()
 		ax.set_ylabel('log($M_{halo}/M_{halo,z=0})$',fontsize=fontsize)
