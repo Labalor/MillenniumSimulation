@@ -6,7 +6,7 @@ We present a simulation of the growth of dark matter structure using the Millenn
 **Tareas pendientes**
 .  
 -  [ ] **Completar nombres y correos electrónicos**: líneas 13 y 14. 
--  [x] **¿Con cuántas partículas se ha hecho la simulación?** N = 2160^3 (Millennium Simulaition)
+-  [x] **¿Con cuántas partículas se ha hecho la simulación?** N = 2160^3 (Millennium Simulaition)/ 270^3 (mili.millenium)
 -  [x] **Dar una explicación:** ¿por qué eliminamos los picos de las figuras de cada rango? [Al final no se elimina, pero hay que comentarlo: fala de precisión]
 
 
