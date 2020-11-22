@@ -8,7 +8,7 @@ limits=[0,1,10,100,1000]
 listhalos=['H1_0','H1_1','H1_10','H1_100','H1_1000']
 
 
-H1_z0=Load('H1',Head)
+H1_z0=Load('H1',Head,True)
 H1_Halos={}
 for i in ((H1_z0.keys())):
 	print('\n------\n->'+ str(i)+'.csv')
@@ -32,23 +32,33 @@ try:
 	shutil.rmtree('H2/Plots')
 except:
 	print('DIR. H2/Plots created')
-HaloTree=Load('H2',Head)
+HaloTree=Load('H2',Head,True)
 print(HaloTree.keys())
 os.mkdir('H2/Plots')
 
 input('\nCODE Information: There are dictionaries with Halos Trees data. The following structure is used to operate with the dictionaries: '+
 	'\n  	np.array( Dictionary[CSV key][Head key])[rows]\n\n'+ '.-CSV Key:'+str(HaloTree.keys()) +'\n' +
-	'Note about the CSV key: inter_number ->Inter: lower m_Crit200 limit /->_number: only a reference number.\n\n.-Head key: '+str(Head)+
+	'Note about the CSV key: inter_number ->Inter: lower m_Crit200 limit ->_number: only a reference number.\n\n.-Head key: '+str(Head)+
 	'\n\nPress any key to continue.')
 
 PlotHaloTree(HaloTree,limits)
 Average,Stdev,Redshift=Average(HaloTree,limits)
 
-
-
 PlotAverages(Average,Redshift,Stdev,Subplot=True)
 PlotAverages(Average,Redshift,Stdev,Subplot=False)
 
+try:
+	shutil.rmtree('G2/Plots')
+except:
+	print('DIR. G2/Plots created')
+
+MassTree=Load('G2',None,HEAD=False)
+os.mkdir('G2/Plots')
+PlotBaryonMassTree(MassTree,limits)
+Baryon_Averages,Baryon_stdev,Baryon_Redshift=AveragesModBaryon(MassTree,limits)
+
+BaryonPlotAverages(Baryon_Averages,Baryon_Redshift,Baryon_stdev,Subplot=True)
+BaryonPlotAverages(Baryon_Averages,Baryon_Redshift,Baryon_stdev,Subplot=False)
 
 
 
