@@ -1,7 +1,7 @@
 # MillenniumSimulation
 We present a simulation of the growth of dark matter structure using the Millennium Simulation (based on Springel et al. 2005 paper)
 
-**Nov 9th:**
+**Nov 22th:**
 
 **Tareas pendientes**
 .  
@@ -18,6 +18,7 @@ We present a simulation of the growth of dark matter structure using the Millenn
 **Tener en cuenta:**
 
 - La masa está en unidades de 10^{10} masas solares. Siendo M_p 8.61 x 10^8 M sol/h. 1+z el factor de expansin del universo relativo al presente.
+- La masa del bulbo es fundamentalmente la masa estelar, o casi ella. Para halos sin masa en el bulbo: posiblemente no tenga suficiente resolucin para que exista o bien para que identifique uno. 
 
 **Sugerencias:**
 
