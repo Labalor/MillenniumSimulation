@@ -17,7 +17,7 @@ We present a simulation of the growth of dark matter structure using the Millenn
 
 **Tener en cuenta:**
 
-- La masa está en unidades de 10^{10} masas solares. Siendo M_p 8.61 x 10^8 M sol/h
+- La masa está en unidades de 10^{10} masas solares. Siendo M_p 8.61 x 10^8 M sol/h. 1+z el factor de expansin del universo relativo al presente.
 
 **Sugerencias:**
 
