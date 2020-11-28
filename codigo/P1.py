@@ -61,7 +61,40 @@ BaryonPlotAverages(Baryon_Averages,Baryon_Redshift,Baryon_stdev,Subplot=True)
 BaryonPlotAverages(Baryon_Averages,Baryon_Redshift,Baryon_stdev,Subplot=False)
 
 
+key=['G100_1','G100_2','G100_8','G100_9']
+for i in key:
 
+
+
+	magnitude_b=MassTree[i][MassTree[i]['mag_b']!=99 ]
+	magnitude_b=np.array(magnitude_b['mag_b']); 
+
+	magnitude_v=MassTree[i][MassTree[i]['mag_b']!=99 ]
+	magnitude_v=np.array(magnitude_v['mag_v']);
+	magnitude=magnitude_b-magnitude_v
+
+	FirstProg=MassTree[i][MassTree[i]['mag_b']!=99 ];
+	FirstProg=np.array(FirstProg['firstProgenitorId'])
+	Paquetes,Delimitadores=Filtromagnitud(MassTree[i],FirstProg)
+	print(Paquetes)
+	PlotArbolFusion(Paquetes,Delimitadores,magnitude,i,MassTree[i])
+	
+
+
+
+#magnitude_v=np.array((set(list(magnitude_v['mag_v'])))); 
+
+
+
+
+
+
+
+
+
+
+	
+	
 
 
 

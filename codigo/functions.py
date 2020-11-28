@@ -286,3 +286,114 @@ def BaryonPlotAverages(Average,Redshift,Stdev,Subplot):
 		plt.savefig('G2/Plots/AveragesSubplot.png')
 
 	plt.close()
+
+
+
+
+
+def Filtromagnitud(G2cs,progenitor):
+	delimitadores=[];count=0
+	Paquetes={}
+	for i in range(len(progenitor)):
+		if progenitor[i]==-1:
+			delimitadores.append([]);
+			delimitadores[count]=i;count+=1
+
+	delimitadores=np.array(delimitadores);
+	for i in range(len(delimitadores)):
+		if i==0:
+			Paquetes[i]=G2cs[0:delimitadores[i]+1]
+		if i!=0 and i!=(len(delimitadores)-1):
+			Paquetes[i]=G2cs[delimitadores[i-1]+1:delimitadores[i]+1]
+		if i==(len(delimitadores)-1):
+			Paquetes[i]=G2cs[delimitadores[i-1]+1:]
+	for i in range(len(delimitadores)):
+		Paquetes[i]=Paquetes[i][Paquetes[i]['mag_b']!=99 ] 
+	return(Paquetes,delimitadores)
+
+
+
+def PlotArbolFusion(Data,delimitadores,magnitude,key,AllData):
+
+	cm1 = mcol.LinearSegmentedColormap.from_list("Mag_b-v",["b","r"])
+	cnorm = mcol.Normalize(vmax=max(magnitude),vmin=min(magnitude))
+	cpick = cm.ScalarMappable(norm=cnorm,cmap=cm1)
+	cpick.set_array([])
+	fig, ax = plt.subplots(figsize=(12,8))
+
+	for i in range(len(delimitadores)):
+		Masa=np.array(Data[i]['coldGas'])+np.array(Data[i]['stellarMass'])+np.array(Data[i]['hotGas'])
+		for j, J in zip(magnitude,range(len(magnitude))):
+			for k in range(len(Data[i]['galaxyID'])):
+				if j==(np.array(Data[i]['mag_b'])[k]-np.array(Data[i]['mag_v'])[k]):
+					if k==0 and i>0:
+						plt.plot(np.array(Data[i]['lastProgenitorId'])[k],np.array(Data[i]['snapnum'])[k],'o',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),markersize=Masa[k]*2,markeredgecolor='black',alpha=0.8)
+						try:
+							limitex=np.array(Data[0][Data[0]['galaxyID']==np.int(np.array(Data[i]['descendantId'])[k]) ]['lastProgenitorId'] )
+							plt.plot([np.array(Data[i]['lastProgenitorId'])[k],limitex],[np.array(Data[i]['snapnum'])[k],np.array(Data[0][Data[0]['galaxyID']==np.int(np.array(Data[i]['descendantId'])[k]) ]['snapnum'] )],'-',linestyle='solid',linewidth=1.5,color=cpick.to_rgba(j),alpha=0.8)
+						except:
+							plt.plot([np.array(Data[i]['lastProgenitorId'])[k],np.array(Data[i]['lastProgenitorId'])[k]],[np.array(Data[i]['snapnum'])[k],np.array(AllData[AllData['galaxyID']==np.int(np.array(Data[i]['descendantId'])[k]) ]['snapnum'] )],'-',linestyle='solid',linewidth=1.5,color=cpick.to_rgba(j),alpha=0.8)
+					if k==(len(Data[i]['galaxyID'])-1):
+						plt.plot(np.array(Data[i]['lastProgenitorId'])[k],np.array(Data[i]['snapnum'])[k],'o',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),
+							markersize=Masa[k]*2,markeredgecolor='black',alpha=0.8)
+						plt.plot([np.array(Data[i]['lastProgenitorId'])[k],np.array(Data[i]['lastProgenitorId'])[k]],[np.array(Data[i]['snapnum'])[k],np.array(AllData[AllData['galaxyID']==np.int(np.array(Data[i]['descendantId'])[k]) ]['snapnum'] )],'-',linestyle='solid',linewidth=1.5,color=cpick.to_rgba(j),alpha=0.8)
+
+					if k!=0:
+						plt.plot([np.array(Data[i]['lastProgenitorId'])[k-1],np.array(Data[i]['lastProgenitorId'])[k]],[np.array(Data[i]['snapnum'])[k-1],np.array(Data[i]['snapnum'])[k]],'-',linestyle='solid',linewidth=1.5,color=cpick.to_rgba(j),alpha=0.8)
+
+						plt.plot(np.array(Data[i]['lastProgenitorId'])[k],np.array(Data[i]['snapnum'])[k],'o',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),
+							markersize=Masa[k]*2,markeredgecolor='black',alpha=0.8)
+
+	ax.set_ylim( min(np.array(Data[0]['snapnum']))-1,max(np.array(Data[0]['snapnum']))+2) 
+	ax.set_ylabel('snapnum',fontsize=20)	
+	#pylab.rcParams['ytick.major.pad']='0.5'
+			
+	plt.colorbar(cpick,label="B-V")
+	mng = plt.get_current_fig_manager();mng.resize(*mng.window.maxsize())
+	plt.savefig('G2/Plots/FussionTree_'+str(key)+'.png')
+	plt.close()
+	for i in range(len(delimitadores)):
+		Masa=np.array(Data[i]['coldGas'])+np.array(Data[i]['stellarMass'])+np.array(Data[i]['hotGas'])
+		for j in magnitude:
+			for k in range(len(Data[i]['galaxyID'])):
+				if j==(np.array(Data[i]['mag_b'])[k]-np.array(Data[i]['mag_v'])[k]):
+					if np.array(Data[i]['firstProgenitorId'])[k]==-1:
+						
+						plt.plot(np.array(Data[i]['x'])[k],np.array(Data[i]['snapnum'])[k],'o-',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),
+							markeredgecolor='black',alpha=0.5)
+					else:
+						plt.plot(np.array(Data[i]['x'])[k],np.array(Data[i]['snapnum'])[k],'o-',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),
+							markeredgecolor='black',alpha=0.5)
+	ax.set_ylim( min(np.array(Data[i]['snapnum'])-5),max(np.array(Data[i]['snapnum']))+9) 
+	ax.set_ylabel('Redshift',fontsize=20)				
+	plt.colorbar(cpick,label="B-V")
+	mng = plt.get_current_fig_manager();mng.resize(*mng.window.maxsize())
+	plt.savefig('G2/Plots/FussionTree2_'+str(key)+'.png')
+	plt.close()
+	figCM= plt.figure(figsize=(13.0, 10.0))
+	ax=figCM.add_subplot(111,projection='3d')
+	for i in range(len(delimitadores)):
+		Masa=np.array(Data[i]['coldGas'])+np.array(Data[i]['stellarMass'])+np.array(Data[i]['hotGas'])
+		for j in magnitude:
+			for k in range(len(Data[i]['galaxyID'])):
+				if j==(np.array(Data[i]['mag_b'])[k]-np.array(Data[i]['mag_v'])[k]):
+					if np.array(Data[i]['firstProgenitorId'])[k]==-1:
+						
+						ax.scatter(np.array(Data[i]['x'])[k],np.array(Data[i]['y'])[k],np.array(Data[i]['redshift'])[k],'o',color=cpick.to_rgba(j),
+							alpha=0.8)
+					else:
+						ax.scatter(np.array(Data[i]['x'])[k],np.array(Data[i]['y'])[k],np.array(Data[i]['redshift'])[k],'o',color=cpick.to_rgba(j),
+							alpha=0.8)
+	ax.set_xlabel('X')
+	ax.set_ylabel('Y')
+	ax.set_zlabel('redshift')
+	ax.view_init(elev=25, azim=70);
+	plt.savefig('G2/Plots/FussionTree3_'+str(key)+'.png')
+	plt.close()
+
+
+
+
+
+
+
