@@ -3,6 +3,20 @@ We present a simulation of the growth of dark matter structure using the Millenn
 
 **Nov 28th:**
 
+## Puntos para rematar el pdf (by Luis): 
+
+1. Revisar los puntos de Víctor (por mi parte, libertad absoluta de modificar y re-redactar cualquier línea)
+2. Sección IIC. Explicar Figura 5 (las cinco gráficas por separado para cada rango de masa)
+2.5 Añadir el cálculo que hiciste para el límite de la masa, que estaba cerca a 10^10. 
+3. Rematar la sección II con lo que quieras añadir (ten en cuenta las consideraciones que hace Víctor más abajo)
+
+4. Sección IIIA: añadir algún motivo más por el que cogemos el Rango 4. 
+5. Sección IIIB: añadir un comentario más largo sobre la interpretación del las Figuras 7, 8 y 9
+6. Esta misma conclusión, añadirla a la conclusión final de la sección IV. 
+
+-1. Borrar todo el Readme, dejándo únicamente las dos primeras líneas (We present...)
+
+
 ## Propuesta de correcciones Víctor a día 28
 
 ### Hecho:
