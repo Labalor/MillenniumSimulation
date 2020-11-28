@@ -314,6 +314,7 @@ def Filtromagnitud(G2cs,progenitor):
 
 
 def PlotArbolFusion(Data,delimitadores,magnitude,key,AllData):
+	MasaC=10**(10)
 
 	cm1 = mcol.LinearSegmentedColormap.from_list("Mag_b-v",["b","r"])
 	cnorm = mcol.Normalize(vmax=max(magnitude),vmin=min(magnitude))
@@ -327,31 +328,32 @@ def PlotArbolFusion(Data,delimitadores,magnitude,key,AllData):
 			for k in range(len(Data[i]['galaxyID'])):
 				if j==(np.array(Data[i]['mag_b'])[k]-np.array(Data[i]['mag_v'])[k]):
 					if k==0 and i>0:
-						plt.plot(np.array(Data[i]['lastProgenitorId'])[k],np.array(Data[i]['snapnum'])[k],'o',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),markersize=Masa[k]*2,markeredgecolor='black',alpha=0.8)
+						plt.plot(np.array(Data[i]['lastProgenitorId'])[k],np.log10(1+np.array(Data[i]['redshift'])[k]),'o',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),markersize=Masa[k]*2.5,markeredgecolor='black',alpha=0.8)
 						try:
 							limitex=np.array(Data[0][Data[0]['galaxyID']==np.int(np.array(Data[i]['descendantId'])[k]) ]['lastProgenitorId'] )
-							plt.plot([np.array(Data[i]['lastProgenitorId'])[k],limitex],[np.array(Data[i]['snapnum'])[k],np.array(Data[0][Data[0]['galaxyID']==np.int(np.array(Data[i]['descendantId'])[k]) ]['snapnum'] )],'-',linestyle='solid',linewidth=1.5,color=cpick.to_rgba(j),alpha=0.8)
+							plt.plot([np.array(Data[i]['lastProgenitorId'])[k],limitex],[np.log10(1+np.array(Data[i]['redshift'])[k]),np.log10(1+np.array(Data[0][Data[0]['galaxyID']==np.int(np.array(Data[i]['descendantId'])[k]) ]['redshift'] ))],'-',linestyle='solid',linewidth=1.5,color=cpick.to_rgba(j),alpha=0.8)
 						except:
-							plt.plot([np.array(Data[i]['lastProgenitorId'])[k],np.array(Data[i]['lastProgenitorId'])[k]],[np.array(Data[i]['snapnum'])[k],np.array(AllData[AllData['galaxyID']==np.int(np.array(Data[i]['descendantId'])[k]) ]['snapnum'] )],'-',linestyle='solid',linewidth=1.5,color=cpick.to_rgba(j),alpha=0.8)
+							plt.plot([np.array(Data[i]['lastProgenitorId'])[k],np.array(Data[i]['lastProgenitorId'])[k]],[np.log10(1+np.array(Data[i]['redshift'])[k]),np.log10(1+np.array(AllData[AllData['galaxyID']==np.int(np.array(Data[i]['descendantId'])[k]) ]['redshift'] ))],'-',linestyle='solid',linewidth=1.5,color=cpick.to_rgba(j),alpha=0.8)
 					if k==(len(Data[i]['galaxyID'])-1):
-						plt.plot(np.array(Data[i]['lastProgenitorId'])[k],np.array(Data[i]['snapnum'])[k],'o',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),
-							markersize=Masa[k]*2,markeredgecolor='black',alpha=0.8)
-						plt.plot([np.array(Data[i]['lastProgenitorId'])[k],np.array(Data[i]['lastProgenitorId'])[k]],[np.array(Data[i]['snapnum'])[k],np.array(AllData[AllData['galaxyID']==np.int(np.array(Data[i]['descendantId'])[k]) ]['snapnum'] )],'-',linestyle='solid',linewidth=1.5,color=cpick.to_rgba(j),alpha=0.8)
+						plt.plot(np.array(Data[i]['lastProgenitorId'])[k],np.log10(1+np.array(Data[i]['redshift'])[k]),'o',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),
+							markersize=Masa[k]*2.5,markeredgecolor='black',alpha=0.8)
+						plt.plot([np.array(Data[i]['lastProgenitorId'])[k],np.array(Data[i]['lastProgenitorId'])[k]],[np.log10(1+np.array(Data[i]['redshift'])[k]),np.log10(1+np.array(AllData[AllData['galaxyID']==np.int(np.array(Data[i]['descendantId'])[k]) ]['redshift']) )],'-',linestyle='solid',linewidth=1.5,color=cpick.to_rgba(j),alpha=0.8)
 
 					if k!=0:
-						plt.plot([np.array(Data[i]['lastProgenitorId'])[k-1],np.array(Data[i]['lastProgenitorId'])[k]],[np.array(Data[i]['snapnum'])[k-1],np.array(Data[i]['snapnum'])[k]],'-',linestyle='solid',linewidth=1.5,color=cpick.to_rgba(j),alpha=0.8)
+						plt.plot([np.array(Data[i]['lastProgenitorId'])[k-1],np.array(Data[i]['lastProgenitorId'])[k]],[np.log10(1+np.array(Data[i]['redshift'])[k-1]),np.log10(1+np.array(Data[i]['redshift'])[k])],'-',linestyle='solid',linewidth=1.5,color=cpick.to_rgba(j),alpha=0.8)
 
-						plt.plot(np.array(Data[i]['lastProgenitorId'])[k],np.array(Data[i]['snapnum'])[k],'o',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),
-							markersize=Masa[k]*2,markeredgecolor='black',alpha=0.8)
+						plt.plot(np.array(Data[i]['lastProgenitorId'])[k],np.log10(1+np.array(Data[i]['redshift'])[k]),'o',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),
+							markersize=Masa[k]*2.5,markeredgecolor='black',alpha=0.8)
 
-	ax.set_ylim( min(np.array(Data[0]['snapnum']))-1,max(np.array(Data[0]['snapnum']))+2) 
-	ax.set_ylabel('snapnum',fontsize=20)	
+	ax.set_ylim( max(np.log10(1+np.array(Data[0]['redshift']))),min(np.log10(1+np.array(Data[0]['redshift']) )-0.1)  ) 
+	ax.set_ylabel('log(1+z)',fontsize=20)	;ax.set_xlabel('Last Progenitor ID',fontsize=20)
 	#pylab.rcParams['ytick.major.pad']='0.5'
 			
 	plt.colorbar(cpick,label="B-V")
 	mng = plt.get_current_fig_manager();mng.resize(*mng.window.maxsize())
 	plt.savefig('G2/Plots/FussionTree_'+str(key)+'.png')
 	plt.close()
+	fig, ax = plt.subplots(figsize=(12,8))
 	for i in range(len(delimitadores)):
 		Masa=np.array(Data[i]['coldGas'])+np.array(Data[i]['stellarMass'])+np.array(Data[i]['hotGas'])
 		for j in magnitude:
@@ -359,13 +361,13 @@ def PlotArbolFusion(Data,delimitadores,magnitude,key,AllData):
 				if j==(np.array(Data[i]['mag_b'])[k]-np.array(Data[i]['mag_v'])[k]):
 					if np.array(Data[i]['firstProgenitorId'])[k]==-1:
 						
-						plt.plot(np.array(Data[i]['x'])[k],np.array(Data[i]['snapnum'])[k],'o-',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),
+						plt.plot(np.array(Data[i]['x'])[k],np.log10(1+np.array(Data[i]['redshift'])[k]),'o-',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),
 							markeredgecolor='black',alpha=0.5)
 					else:
-						plt.plot(np.array(Data[i]['x'])[k],np.array(Data[i]['snapnum'])[k],'o-',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),
+						plt.plot(np.array(Data[i]['x'])[k],np.log10(1+np.array(Data[i]['redshift'])[k]),'o-',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),
 							markeredgecolor='black',alpha=0.5)
-	ax.set_ylim( min(np.array(Data[i]['snapnum'])-5),max(np.array(Data[i]['snapnum']))+9) 
-	ax.set_ylabel('Redshift',fontsize=20)				
+	ax.set_ylim( 1,-0.1  ) 
+	ax.set_ylabel('log(1+z)',fontsize=20);ax.set_xlabel('x',fontsize=20)				
 	plt.colorbar(cpick,label="B-V")
 	mng = plt.get_current_fig_manager();mng.resize(*mng.window.maxsize())
 	plt.savefig('G2/Plots/FussionTree2_'+str(key)+'.png')
@@ -384,9 +386,9 @@ def PlotArbolFusion(Data,delimitadores,magnitude,key,AllData):
 					else:
 						ax.scatter(np.array(Data[i]['x'])[k],np.array(Data[i]['y'])[k],np.array(Data[i]['redshift'])[k],'o',color=cpick.to_rgba(j),
 							alpha=0.8)
-	ax.set_xlabel('X')
-	ax.set_ylabel('Y')
-	ax.set_zlabel('redshift')
+	ax.set_xlabel('X',fontsize=20)
+	ax.set_ylabel('Y',fontsize=20)
+	ax.set_zlabel('redshift',fontsize=20)
 	ax.view_init(elev=25, azim=70);
 	plt.savefig('G2/Plots/FussionTree3_'+str(key)+'.png')
 	plt.close()

@@ -76,7 +76,7 @@ for i in key:
 	FirstProg=MassTree[i][MassTree[i]['mag_b']!=99 ];
 	FirstProg=np.array(FirstProg['firstProgenitorId'])
 	Paquetes,Delimitadores=Filtromagnitud(MassTree[i],FirstProg)
-	print(Paquetes)
+
 	PlotArbolFusion(Paquetes,Delimitadores,magnitude,i,MassTree[i])
 	
 
