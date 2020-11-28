@@ -25,10 +25,16 @@ Cambiara la frase *si uno se detiene en cada gráfica dentro de la figura 3. * N
 
 ## Explicacion de las desvioneciones típicas
 
-La figura presenta el promedio de las masas de los halos para los 5 intervalos de mcrtis200. Esta grfica, como se comentaba, refleja un cambio portencual respecto al estado final a redshift 0. Por tanto, para un redhift dado, se ve que un cierto halo ha ganado o perdido un cierto porcentaje de su masa final. Cabe esperar que para redshift cercanos al 0, su cambio porcentual sea muy pequeño, es decir, converga al estado final de manera suave. El halo ha llegado a una etapa estable y definida.  Si ahora implementamos el concepto de desviacin típica, ésta sera mínima para esta etapa y máxima para el estado inicial. Esto se debe a que cada halo parte con comportamientos muy distintos. 
+La figura presenta el promedio de las masas de los halos para los 5 intervalos de mcrtis200. Esta grfica, como se comentaba, refleja un cambio portencual respecto al estado final a redshift 0. Por tanto, para un redhift dado, se ve que un cierto halo ha ganado o perdido un cierto porcentaje de su masa final. Cabe esperar que para redshift cercanos al 0, su cambio porcentual sea muy pequeño, es decir, converga al estado final de manera suave. El halo ha llegado a una etapa estable y definida.  Si ahora implementamos el concepto de desviacin típica, ésta sera mínima para esta etapa y máxima para el estado inicial. Esto se debe a que cada halo parte con comportamientos másicos muy distintos. 
+
+Explicado más en detalle: se interpreta la desviacin como la diferencia máxima entre un cambio porcentual de un halo respecto a otro para un redshift determinado. Conforme mayor sea la desviacin, ms distinto son los comportamientos. Los halos ganan o pierden masa de una manera más arbitraria. Si es DM, esto se debe a un intercambio por interaccin gravitatoria. Ahota bien, si la desviación se reduce, los halos cambian de manera similar, estn ms estables, tendrn menos interacciones. 
+
+Con ello se interpreta mejor las graficas, resaltando la mala resolución que se produce en los halos de baja masa, cuya desviacin es grande de manera continuada. 
+
+Nota importante: Si se observa alguna desviacin que es nula comprendida entre dos momentos de desviacin alta, esto se debe a que solo 1 halo con el que se ha promediado lelga a ese redhisft. No quiere decir por tanto, que todos los halos converjan en ese punto, si no que solo hay 1. 
 
 
-
+## otras cosas
 
 
 
