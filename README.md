@@ -31,7 +31,7 @@ Explicado más en detalle: se interpreta la desviacin como la diferencia máxima
 
 Con ello se interpreta mejor las graficas, resaltando la mala resolución que se produce en los halos de baja masa, cuya desviacin es grande de manera continuada. 
 
-Nota importante: Si se observa alguna desviacin que es nula comprendida entre dos momentos de desviacin alta, esto se debe a que solo 1 halo con el que se ha promediado lelga a ese redhisft. No quiere decir por tanto, que todos los halos converjan en ese punto, si no que solo hay 1. 
+Nota importante: Si se observa alguna desviacin que es nula comprendida entre dos momentos de desviacin alta a redshift altos, esto se debe a que solo 1 halo con el que se ha promediado lelga a ese redhisft. No quiere decir por tanto, que todos los halos converjan en ese punto, si no que solo hay 1. 
 
 
 ## otras cosas
