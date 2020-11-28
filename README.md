@@ -1,7 +1,19 @@
 # MillenniumSimulation
 We present a simulation of the growth of dark matter structure using the Millennium Simulation (based on Springel et al. 2005 paper)
 
-**Nov 22th:**
+**Nov 28th:**
+
+### Propuesta de correcciones Víctor a día 28
+
+1.-@Luis Abalo tu nombre tiene un hipervinvulo a tres correos tuyos. Yo los correos los pondría debajo del nombre o en la cabecera, no en un footenote. Como sugerencia. 
+2.- En el asbtract se dice que se tiene en cuanta la materia oscura para el estudio de las galaxias, Es solo barionica. Yo cambiaría exceso de color por color directamente. En diferentes bandas fotométricas pondría solo las bandas b y v. No termino de ver que el objetivo principal sea el escrito. 
+3.- Introduccion El número de particulas y el tamaño de la caja al que se accede es menor creo. Pondría ambas cosas. 
+4.- Procedimiento La tabla pone M_Crit, falta el 200. Hay una errata en el párrafo 3 de esta seccion nada->dada  Incluiria alguna mencion al codigo desarrollado. Es decir, para el modo H1 se ha seleccionado regiones espaciales de la simulacion sesgadas por un np para su posterior catalogación de halos mediante un programa desarrollado Creo importante que se vea reflejado que hay un programa detrás. redshif nulo-> redshift cero.
+5.-
+
+
+
+
 
 **Tareas pendientes**
 .  
