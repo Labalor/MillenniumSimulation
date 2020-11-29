@@ -70,3 +70,7 @@ Nota importante: Si se observa alguna desviacin que es nula comprendida entre do
    5) baryon
    6) baryon_dev
 
+YUAN:
+1. En el abstract he añadido al objetivo principal que también estudiamos galaxias, no solo halos de DM. Y he corregido una errata donde ponía materia oscura en lugar de bariónica.
+2. En Introducción he hecho lo mismo, añadir que estudiamos galaxias y referenciar a De Lucía y Blaizot.
+3. 
