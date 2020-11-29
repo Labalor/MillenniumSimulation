@@ -72,7 +72,7 @@ Nota importante: Si se observa alguna desviacin que es nula comprendida entre do
 
 ## YUAN 29/11:
 1.- En el abstract he añadido al objetivo principal que también estudiamos galaxias, no solo halos de DM. Y he corregido una errata donde ponía materia oscura en lugar de bariónica.
-2.- En Introducción he hecho lo mismo, añadir que estudiamos galaxias y referenciar a De Lucía y Blaizot.
+2.- En Introducción he hecho lo mismo, añadir que estudiamos galaxias y referenciar a De Lucía y Blaizot. También cambiar tamaño y número de partículas por los de millimill. Añadida también una breve explicación del mecanismo de identificación de estructuras y su relación con la resolución de la simulación.
 3.- En Sección II, barrido de erratas y cambios para aclarar el significado de algunas oraciones. 
 4.- Cambios grandes en sección II B: He comentado el segundo párrafo porque creo que sobra y se os ha colao en alguna corrección, el tercero dice lo mismo pero mejor. El quinto párrafo lo he cambiado entero para introducir la explicación de los decrecimientos que se me ocurrió. He itemizado el sexto párrafo y he cambiado su inicio que no os convencía, según he leído ahí arriba. He comentado también el séptimo, octavo y noveno párrafos y he escrito otro comentando la figura 4, creo que eran un copiapega de una explicación de ahí arriba también.
-5.- 
+5.- Sección III: He hecho un párrafo introductorio. 
