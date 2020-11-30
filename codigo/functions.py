@@ -327,8 +327,9 @@ def PlotArbolFusion(Data,delimitadores,magnitude,key,AllData):
 		for j, J in zip(magnitude,range(len(magnitude))):
 			for k in range(len(Data[i]['galaxyID'])):
 				if j==(np.array(Data[i]['mag_b'])[k]-np.array(Data[i]['mag_v'])[k]):
+					Data[i].loc[Data[i]['firstProgenitorId']==-1,'firstProgenitorId']=Data[i]['galaxyID']+1
 					if k==0 and i>0:
-						plt.plot(np.array(Data[i]['lastProgenitorId'])[k],np.log10(1+np.array(Data[i]['redshift'])[k]),'o',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),markersize=Masa[k]*2.5,markeredgecolor='black',alpha=0.8)
+						plt.plot(np.array(Data[i]['lastprogenitor'])[k],np.log10(1+np.array(Data[i]['redshift'])[k]),'o',linestyle='solid',linewidth=50,color=cpick.to_rgba(j),markersize=Masa[k]*2.5,markeredgecolor='black',alpha=0.8)
 						try:
 							limitex=np.array(Data[0][Data[0]['galaxyID']==np.int(np.array(Data[i]['descendantId'])[k]) ]['lastProgenitorId'] )
 							plt.plot([np.array(Data[i]['lastProgenitorId'])[k],limitex],[np.log10(1+np.array(Data[i]['redshift'])[k]),np.log10(1+np.array(Data[0][Data[0]['galaxyID']==np.int(np.array(Data[i]['descendantId'])[k]) ]['redshift'] ))],'-',linestyle='solid',linewidth=1.5,color=cpick.to_rgba(j),alpha=0.8)
@@ -346,7 +347,7 @@ def PlotArbolFusion(Data,delimitadores,magnitude,key,AllData):
 							markersize=Masa[k]*2.5,markeredgecolor='black',alpha=0.8)
 
 	ax.set_ylim( max(np.log10(1+np.array(Data[0]['redshift']))),min(np.log10(1+np.array(Data[0]['redshift']) )-0.1)  ) 
-	ax.set_ylabel('log(1+z)',fontsize=20)	;ax.set_xlabel('Last Progenitor ID',fontsize=20)
+	ax.set_ylabel('log(1+z)',fontsize=20)	;ax.set_xlabel('First Progenitor ID',fontsize=20)
 	#pylab.rcParams['ytick.major.pad']='0.5'
 			
 	plt.colorbar(cpick,label="B-V")
