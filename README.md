@@ -80,4 +80,8 @@ Nota importante: Si se observa alguna desviacin que es nula comprendida entre do
 
 4.- Cambios grandes en sección II B: He comentado el segundo párrafo porque creo que sobra y se os ha colao en alguna corrección, el tercero dice lo mismo pero mejor. El quinto párrafo lo he cambiado entero para introducir la explicación de los decrecimientos que se me ocurrió. He itemizado el sexto párrafo y he cambiado su inicio que no os convencía, según he leído ahí arriba. He comentado también el séptimo, octavo y noveno párrafos y he escrito otro comentando la figura 4, creo que eran un copiapega de una explicación de ahí arriba también.
 
-5.- Sección III: He hecho un párrafo introductorio. 
+5.- Sección IIIA: He hecho un párrafo introductorio. Corregido el motivo de la selección de rango.
+
+6.- Sección IIIB: Todos los efectos que conozco comentados.
+
+7.- Sección IV: Completadas las conclusiones.
